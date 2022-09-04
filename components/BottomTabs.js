@@ -32,13 +32,13 @@ const BottomTabs = ({icons}) => {
   const Icon = ({icon}) => (
     <TouchableOpacity onPress={() => setActiveTab(icon.name)}>
 
-      <Divider style={styles.iconContainer}>
+      <View style={styles.iconContainer}>
         <Image
           source={icon.path} 
           style={[styles.icon, activeTab == icon.name ? styles.iconActive : styles.iconInactive]}
         />
         <Text style={{color: activeTab == icon.name ? 'blue' : 'white'}}> {icon.name} </Text>
-      </Divider>
+      </View>
       
     </TouchableOpacity>
   )
