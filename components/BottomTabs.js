@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
-import { Divider, withTheme } from 'react-native-elements'
+import { Divider } from 'react-native-elements'
 
 export const bottomTabIcons = [
     {
@@ -27,7 +27,7 @@ export const bottomTabIcons = [
 
 
 const BottomTabs = ({icons}) => {
-  const [activeTab, setActiveTab] = useState('Home')
+  const [activeTab, setActiveTab] = useState('Plany')
 
   const Icon = ({icon}) => (
     <TouchableOpacity onPress={() => setActiveTab(icon.name)}>
@@ -35,29 +35,37 @@ const BottomTabs = ({icons}) => {
       <Divider style={styles.iconContainer}>
         <Image
           source={icon.path} 
-          style={styles.icon}
+          style={[styles.icon, activeTab == icon.name ? styles.iconActive : styles.iconInactive]}
         />
-        <Text style={styles.textStyle}> {icon.name} </Text>
+        <Text style={{color: activeTab == icon.name ? 'blue' : 'white'}}> {icon.name} </Text>
       </Divider>
       
     </TouchableOpacity>
   )
   return (
-    <View style={styles.iconsContainer}>
-      {icons.map((icon, index) => (
-        <Icon key={index} icon={icon} />
-      ))}
+    <View style={styles.wrapper}>
+      <Divider width={1} orientation='vertical' />
+      <View style={styles.iconsContainer}>
+        {icons.map((icon, index) => (
+          <Icon key={index} icon={icon} />
+        ))}
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    position: 'absolute',
+    width: '100%',
+    bottom: 0,
+    zIndex: 999,
+    backgroundColor: 'black'
+  },
   iconsContainer: {
-    backgroundColor: 'black',
-    paddingBottom: 5,
     paddingTop: 10,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   iconContainer: {
     flexDirection: 'column',
@@ -71,8 +79,12 @@ const styles = StyleSheet.create({
     tintColor: 'white',
     resizeMode: 'contain'
   },
-  textStyle: {
-    color: 'white',
+  iconActive: {
+    tintColor: 'blue',
+    color: 'blue',
+  },
+  iconInactive: {
+    tintColor: 'white',
   },
 })
 
