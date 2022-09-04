@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import TopTabs from './TopTabs'
 
 export const days = [
     'Poniedziałek',
@@ -14,7 +15,7 @@ export const days = [
 const Plans = () => {
   return (
     <View>
-      <Text>Plans</Text>
+      <TopTabs />
     </View>
   )
 }

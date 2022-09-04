@@ -1,18 +1,17 @@
 import { Image, StyleSheet, TouchableOpacity, View} from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import React from 'react'
 
 
 const TopTabs = () => {
     return (
-        <SafeAreaView style={styles.wrapper}>
+        <View style={styles.wrapper}>
             <TouchableOpacity >
                 <Image
                     source={require('../../assets/icons/search.png')}
-                    style={{width: 40, height: 40, resizeMode: 'contain', tintColor: 'white'}}
+                    style={{width: 30, height: 30, resizeMode: 'contain', tintColor: 'white'}}
                 />
             </TouchableOpacity>
-        </SafeAreaView>
+        </View>
     )
 }
 
