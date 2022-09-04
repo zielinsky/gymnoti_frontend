@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import { Divider } from 'react-native-elements'
 
+const ACTIVE_COLOR = '#2BF1E1';
+const INACTIVE_COLOR = 'white';
+
 export const bottomTabIcons = [
     {
       name: 'Plany',
@@ -24,10 +27,6 @@ export const bottomTabIcons = [
       path: require('../assets/icons/profile.png')
     },
 ]
-
-const ACTIVE_COLOR = '#2BF1E1';
-const INACTIVE_COLOR = 'white';
-
 
 const BottomTabs = ({icons}) => {
   const [activeTab, setActiveTab] = useState('Rozpocznij Trening')
