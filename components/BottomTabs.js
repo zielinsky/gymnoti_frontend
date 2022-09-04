@@ -8,16 +8,16 @@ export const bottomTabIcons = [
       path: require('../assets/icons/plans.png')
     },
     {
-      name: 'Progress',
-      path: require('../assets/icons/progress.png')
+      name: 'Historia',
+      path: require('../assets/icons/history.png')
     },
     {
-      name: 'Rozpocznij trening',
+      name: 'Rozpocznij Trening',
       path: require('../assets/icons/play.png')
     },
     {
-      name: 'Historia',
-      path: require('../assets/icons/history.png')
+      name: 'Progres',
+      path: require('../assets/icons/progress.png')
     },
     {
       name: 'Profil',
@@ -25,9 +25,12 @@ export const bottomTabIcons = [
     },
 ]
 
+const ACTIVE_COLOR = '#2BF1E1';
+const INACTIVE_COLOR = 'white';
+
 
 const BottomTabs = ({icons}) => {
-  const [activeTab, setActiveTab] = useState('Plany')
+  const [activeTab, setActiveTab] = useState('Rozpocznij Trening')
 
   const Icon = ({icon}) => (
     <TouchableOpacity onPress={() => setActiveTab(icon.name)}>
@@ -35,9 +38,9 @@ const BottomTabs = ({icons}) => {
       <View style={styles.iconContainer}>
         <Image
           source={icon.path} 
-          style={[styles.icon, activeTab == icon.name ? styles.iconActive : styles.iconInactive]}
+          style={[styles.icon, {tintColor: activeTab == icon.name ? ACTIVE_COLOR : INACTIVE_COLOR}]}
         />
-        <Text style={{color: activeTab == icon.name ? 'blue' : 'white'}}> {icon.name} </Text>
+        <Text style={{color: activeTab == icon.name ? ACTIVE_COLOR : INACTIVE_COLOR}}> {icon.name} </Text>
       </View>
       
     </TouchableOpacity>
@@ -60,31 +63,26 @@ const styles = StyleSheet.create({
     width: '100%',
     bottom: 0,
     zIndex: 999,
-    backgroundColor: 'black'
   },
   iconsContainer: {
     paddingTop: 10,
+    paddingBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
   iconContainer: {
+    paddingLeft: 20,
+    paddingRight: 20,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
   },
   icon: {
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
     tintColor: 'white',
     resizeMode: 'contain'
-  },
-  iconActive: {
-    tintColor: 'blue',
-    color: 'blue',
-  },
-  iconInactive: {
-    tintColor: 'white',
   },
 })
 
