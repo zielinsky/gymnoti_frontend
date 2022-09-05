@@ -14,7 +14,7 @@ const TopTabs = () => {
                 </TouchableOpacity>
                 <TouchableOpacity  style={styles.buttonContainer} >
                     <Text style={{color: 'white', fontSize: 20}}>
-                        Szukaj
+                        Społeczność
                     </Text>
                 </TouchableOpacity>
             </View>
