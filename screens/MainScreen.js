@@ -7,7 +7,7 @@ import Plans from '../components/plans/Plans'
 const MainScreen = () => {
   return (
       <SafeAreaView style={styles.container}>
-        <Plans />
+        <Plans/>
         <BottomTabs icons={bottomTabIcons}/>
       </SafeAreaView>
   )
@@ -15,7 +15,10 @@ const MainScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexDirection: 'column',
+    flexGrow: 1,
+    justifyContent: 'space-between',
+    width: '100%',
     backgroundColor: '#08090D',
   }
 })

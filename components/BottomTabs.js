@@ -29,7 +29,7 @@ export const bottomTabIcons = [
 ]
 
 const BottomTabs = ({icons}) => {
-  const [activeTab, setActiveTab] = useState('Rozpocznij Trening')
+  const [activeTab, setActiveTab] = useState('Plany')
 
   const Icon = ({icon}) => (
     <TouchableOpacity onPress={() => setActiveTab(icon.name)}>
