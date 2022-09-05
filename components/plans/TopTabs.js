@@ -1,27 +1,40 @@
-import { Image, StyleSheet, TouchableOpacity, View} from 'react-native'
+import { StyleSheet, TouchableOpacity, View, Text} from 'react-native'
+import { Divider } from 'react-native-elements'
 import React from 'react'
 
 
 const TopTabs = () => {
     return (
         <View style={styles.wrapper}>
-            <TouchableOpacity >
-                <Image
-                    source={require('../../assets/icons/search.png')}
-                    style={{width: 30, height: 30, resizeMode: 'contain', tintColor: 'white'}}
-                />
-            </TouchableOpacity>
+            <View style={styles.container}>
+                <TouchableOpacity  style={styles.buttonContainer} >
+                    <Text style={{color: 'white', fontSize: 20}}>
+                        Moje plany
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity  style={styles.buttonContainer} >
+                    <Text style={{color: 'white', fontSize: 20}}>
+                        Szukaj
+                    </Text>
+                </TouchableOpacity>
+            </View>
+            <Divider width={1} orientation='vertical' />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
-        position: 'absolute',
-        right: 0,
-        top: 0,
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        paddingBottom: 15,
+        paddingTop: 15,
         zIndex: 999,
-        paddingRight: 15,
+    },
+    buttonContainer: {
+        paddingLeft: 25,
+        paddingRight: 25,
     }
 })
     
