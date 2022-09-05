@@ -28,7 +28,6 @@ const Plans = () => {
 const styles = StyleSheet.create({
   text: {
     fontSize: 25,
-    color: 'white'
   },
   buttonContainer: {
     paddingTop: 15,
