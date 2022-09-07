@@ -14,9 +14,10 @@ export const days = [
 
 const Plans = () => {
   const Day = ({day}) => (
-    <TouchableOpacity style={{paddingTop: 10}}>
-      <View style={styles.container}>
-        <Text> {day} </Text>
+    <TouchableOpacity style={styles.dayWrapper}>
+      <View style={styles.dayContainer}>
+        <Text style={{paddingLeft: 15}}> {day} </Text>
+        <Text style={{paddingRight: 15, fontSize: 10}}> Aktualnie nie masz wybranego treningu! </Text>
       </View>
     </TouchableOpacity>
   )
@@ -24,7 +25,7 @@ const Plans = () => {
   return (
     <View>
       <TopTabs />
-        <View  style={styles.wrapper}>
+        <View  style={styles.daysContainer}>
           {days.map((day, index) => (
             <Day key={index} day={day}/>
           ))}
@@ -34,16 +35,21 @@ const Plans = () => {
 }
 
 const styles = StyleSheet.create({
-  wrapper:{
+  daysContainer:{
     alignItems: 'center'
   },
-  container: {
-    justifyContent: 'center',
+  dayWrapper: {
+    paddingTop: 10,
+  },
+  dayContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     width: 350,
-    height: 85,
-    borderWidth: 3,
-    borderRadius: 15,
-    borderColor: 'white',
+    height: 86,
+    borderWidth: .6,
+    borderRadius: 10,
+    borderColor:'rgba(158, 150, 150, .6)',
   }
 })
 
