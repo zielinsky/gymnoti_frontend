@@ -9,7 +9,7 @@ const TopTabs = () => {
             <View style={styles.container}>
                 <TouchableOpacity  style={styles.buttonContainer} >
                     <Text style={{color: 'white', fontSize: 20}}>
-                        Moje plany
+                        Moje treningi
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity  style={styles.buttonContainer} >

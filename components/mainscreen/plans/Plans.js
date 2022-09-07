@@ -12,12 +12,18 @@ export const days = [
     'Niedziela'
 ]
 
+const highlitedColor = '#2BF1E1'
+
 const Plans = () => {
   const Day = ({day}) => (
     <TouchableOpacity style={styles.dayWrapper}>
       <View style={styles.dayContainer}>
         <Text style={{paddingLeft: 15}}> {day} </Text>
-        <Text style={{paddingRight: 15, fontSize: 10}}> Aktualnie nie masz wybranego treningu! </Text>
+        <Text style={{paddingRight: 15, fontSize: 10}}> 
+          Aktualnie nie masz wybranego treningu! {'\n'} 
+          Kliknij aby dodać/utworzyć trening lub {'\n'}
+          ustawić <Text style={styles.highlitedText}>{day}</Text> jako dzień wolny!
+        </Text>
       </View>
     </TouchableOpacity>
   )
@@ -50,6 +56,9 @@ const styles = StyleSheet.create({
     borderWidth: .6,
     borderRadius: 10,
     borderColor:'rgba(158, 150, 150, .6)',
+  },
+  highlitedText: {
+    color: highlitedColor
   }
 })
 
