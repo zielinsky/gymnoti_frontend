@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import BottomTabs, { bottomTabIcons } from '../components/BottomTabs'
-import Plans from '../components/plans/Plans'
+import BottomTabs, { bottomTabIcons } from '../components/mainscreen/BottomTabs'
+import Plans from '../components/mainscreen/plans/Plans'
 
 const MainScreen = () => {
   return (

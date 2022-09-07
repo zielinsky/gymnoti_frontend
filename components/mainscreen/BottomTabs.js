@@ -8,23 +8,23 @@ const INACTIVE_COLOR = 'white';
 export const bottomTabIcons = [
     {
       name: 'Plany',
-      path: require('../assets/icons/plans.png')
+      path: require('../../assets/icons/plans.png')
     },
     {
       name: 'Historia',
-      path: require('../assets/icons/history.png')
+      path: require('../../assets/icons/history.png')
     },
     {
       name: 'Rozpocznij Trening',
-      path: require('../assets/icons/play.png')
+      path: require('../../assets/icons/play.png')
     },
     {
       name: 'Progres',
-      path: require('../assets/icons/progress.png')
+      path: require('../../assets/icons/progress.png')
     },
     {
       name: 'Profil',
-      path: require('../assets/icons/profile.png')
+      path: require('../../assets/icons/profile.png')
     },
 ]
 
