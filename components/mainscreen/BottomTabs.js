@@ -1,38 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import { Divider } from 'react-native-elements'
 
 const ACTIVE_COLOR = '#2BF1E1';
 const INACTIVE_COLOR = 'white';
 
-export const bottomTabIcons = [
-    {
-      name: 'Plany',
-      path: require('../../assets/icons/plans.png')
-    },
-    {
-      name: 'Historia',
-      path: require('../../assets/icons/history.png')
-    },
-    {
-      name: 'Rozpocznij Trening',
-      path: require('../../assets/icons/play.png')
-    },
-    {
-      name: 'Progres',
-      path: require('../../assets/icons/progress.png')
-    },
-    {
-      name: 'Profil',
-      path: require('../../assets/icons/profile.png')
-    },
-]
-
-const BottomTabs = ({icons}) => {
-  const [activeTab, setActiveTab] = useState('Plany')
+const BottomTabs = ({icons, setParenActiveTab, activeTab}) => {
 
   const Icon = ({icon}) => (
-    <TouchableOpacity onPress={() => setActiveTab(icon.name)}>
+    <TouchableOpacity onPress={() => setParenActiveTab(icon.name)}>
 
       <View style={styles.iconContainer}>
         <Image
