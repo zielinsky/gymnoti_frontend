@@ -12,7 +12,7 @@ export const days = [
     'Niedziela'
 ]
 
-const highlitedColor = '#2BF1E1'
+const HIGHLITED_COLOR = '#2BF1E1'
 
 const Plans = () => {
   const Day = ({day}) => (
@@ -22,7 +22,7 @@ const Plans = () => {
         <Text style={{paddingRight: 15, fontSize: 10}}> 
           Aktualnie nie masz wybranego treningu! {'\n'} 
           Kliknij aby dodać/utworzyć trening lub {'\n'}
-          ustawić <Text style={styles.highlitedText}>{day}</Text> jako dzień wolny!
+          ustawić <Text style={styles.highlitedText}> {day} </Text> jako dzień wolny!
         </Text>
       </View>
     </TouchableOpacity>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     borderColor:'rgba(158, 150, 150, .6)',
   },
   highlitedText: {
-    color: highlitedColor
+    color: HIGHLITED_COLOR
   }
 })
 
