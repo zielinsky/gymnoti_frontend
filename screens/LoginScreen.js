@@ -13,7 +13,7 @@ const LoginScreen = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        navigation.replace("Home")
+        navigation.replace("Main")
       }
     })
 
@@ -24,7 +24,7 @@ const LoginScreen = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
-        console.log('Registered with:', user.email);
+        console.log(user.uid);
       })
       .catch(error => alert(error.message))
   }
@@ -33,16 +33,13 @@ const LoginScreen = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
-        console.log('Logged in with:', user.email);
+        console.log(user.uid);
       })
       .catch(error => alert(error.message))
   }
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior="padding"
-    >
+    <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -51,7 +48,7 @@ const LoginScreen = () => {
           style={styles.input}
         />
         <TextInput
-          placeholder="Password"
+          placeholder="Hasło"
           value={password}
           onChangeText={text => setPassword(text)}
           style={styles.input}
@@ -60,17 +57,11 @@ const LoginScreen = () => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={handleLogin}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Login</Text>
+        <TouchableOpacity onPress={handleLogin} style={styles.button}>
+          <Text style={styles.buttonText}>Zaloguj</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handleSignUp}
-          style={[styles.button, styles.buttonOutline]}
-        >
-          <Text style={styles.buttonOutlineText}>Register</Text>
+        <TouchableOpacity onPress={handleSignUp} style={[styles.button, styles.buttonOutline]}>
+          <Text style={styles.buttonOutlineText}>Zarejestruj</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -96,22 +87,22 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   buttonContainer: {
-    width: '60%',
+    width: '80%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 40,
+    marginTop: 50,
   },
   button: {
-    backgroundColor: '#0782F9',
+    backgroundColor: '#07b0f9',
     width: '100%',
-    padding: 15,
+    padding: 10,
     borderRadius: 10,
     alignItems: 'center',
   },
   buttonOutline: {
     backgroundColor: 'white',
     marginTop: 5,
-    borderColor: '#0782F9',
+    borderColor: '#07b0f9',
     borderWidth: 2,
   },
   buttonText: {
@@ -120,7 +111,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonOutlineText: {
-    color: '#0782F9',
+    color: '#07b0f9',
     fontWeight: '700',
     fontSize: 16,
   },
