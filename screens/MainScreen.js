@@ -34,8 +34,6 @@ export const tabsInfo = [
   },
 ]
 
-
-
 const MainScreen = () => {
   const [activeTab, setActiveTab] = useState('Plany')
 

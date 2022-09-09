@@ -24,6 +24,7 @@ LocaleConfig.locales['pl'] = {
 };
 LocaleConfig.defaultLocale = 'pl';
 
+
 const History = () => {
   return (
     <View style={styles.container}>
