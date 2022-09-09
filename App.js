@@ -3,7 +3,6 @@ import MainScreen from './screens/MainScreen';
 import LoginScreen from './screens/LoginScreen';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { auth } from "./firebase";
 
 const Stack = createNativeStackNavigator();
 
