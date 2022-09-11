@@ -1,7 +1,7 @@
 import { View, Text , StyleSheet, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import TopTabs from './TopTabs'
-import { collection, getDoc, onSnapshot } from 'firebase/firestore'
+import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore'
 import {firestore, auth} from '../../../firebase'
 
 export const days = [
@@ -33,17 +33,18 @@ const Plans = () => {
 
 
   useEffect(() => {
-    const  subscriber = onSnapshot(collection(firestore, 'users', auth.currentUser.uid, 'plans'), QuerySnapshot => {
-      const plans = {
-        'monday': '',
-        'tuesday': '',
-        'wednesday': '',
-        'thursday': '',
-        'friday': '',
-        'saturday': '',
-        'sunday': ''
-      }
 
+    const plans = {
+      'monday': '',
+      'tuesday': '',
+      'wednesday': '',
+      'thursday': '',
+      'friday': '',
+      'saturday': '',
+      'sunday': ''
+    }
+    
+    const  subscriber = onSnapshot(collection(firestore, 'users', auth.currentUser.uid, 'plans'), QuerySnapshot => {
       QuerySnapshot.forEach(documentSnapshot => {
         plans[documentSnapshot.id] = documentSnapshot.data().name
       })
@@ -63,7 +64,7 @@ const Plans = () => {
     <TouchableOpacity style={styles.dayWrapper}>
       <View style={styles.dayContainer}>
         <Text style={{paddingLeft: 15}}> {day} </Text>
-        <Text style={{paddingRight: 15, fontSize: 10}}>
+        <Text style={[{paddingRight: 15, fontSize: 20}, styles.highlitedText]}>
           {plan}
         </Text>
       </View>
