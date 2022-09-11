@@ -10,7 +10,7 @@ const Profile = () => {
 
   const handleSingOut = () =>{
     signOut(auth).then(() => {
-      navigation.replace("Logowanie")
+      navigation.replace("Login")
     })
   }
 

@@ -10,7 +10,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen options={{headerTitleAlign: 'center'}} name="Logowanie" component={LoginScreen}/>
+        <Stack.Screen options={{headerTitleAlign: 'center'}} name="Login" component={LoginScreen}/>
         <Stack.Screen options={{headerShown: false}} name="Main" component={MainScreen}/>
       </Stack.Navigator>
     </NavigationContainer>

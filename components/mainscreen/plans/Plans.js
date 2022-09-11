@@ -1,7 +1,7 @@
-import { View, Text , StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text , StyleSheet, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import TopTabs from './TopTabs'
-import { collection, getDoc, doc, get } from 'firebase/firestore'
+import { collection, getDoc, onSnapshot } from 'firebase/firestore'
 import {firestore, auth} from '../../../firebase'
 
 export const days = [
@@ -28,40 +28,43 @@ const HIGHLITED_COLOR = '#2BF1E1'
 
 
 const Plans = () => {
-  const [tableData, settableData] = useState({
-    Monday: "",
-    Tuesday: "",
-    Wednesday: "",
-    Thursday: "",
-    Friday: "",
-    Saturday:"",
-    Sunday: ""
-  });
+  const [loading, setLoading] = useState(true)
+  const [plans, setPlans] = useState({})
 
-  const getPlansName = async () => {
-      const planDocRef = doc(firestore, 'users', auth.currentUser.uid);
-      const planDocSnap = await getDoc(planDocRef);
-      const trainingDocRef = planDocSnap.data()['monday'];
-      const trainingDocSnap = await getDoc(trainingDocRef);
 
-      settableData({
-        Monday: trainingDocSnap.data().name,
-        Tuesday: trainingDocSnap.data().name,
-        Wednesday: trainingDocSnap.data().name,
-        Thursday: trainingDocSnap.data().name,
-        Friday: trainingDocSnap.data().name,
-        Saturday: trainingDocSnap.data().name,
-        Sunday: trainingDocSnap.data().name,
-    })
-  }
-  useEffect(() => {getPlansName()}, [])
+  useEffect(() => {
+    const  subscriber = onSnapshot(collection(firestore, 'users', auth.currentUser.uid, 'plans'), QuerySnapshot => {
+      const plans = {
+        'monday': '',
+        'tuesday': '',
+        'wednesday': '',
+        'thursday': '',
+        'friday': '',
+        'saturday': '',
+        'sunday': ''
+      }
 
-  const Day = ({day}) => (
+      QuerySnapshot.forEach(documentSnapshot => {
+        plans[documentSnapshot.id] = documentSnapshot.data().name
+      })
+
+      setPlans(plans);
+      setLoading(false);
+    });
+    return () => subscriber();
+  }, [])
+
+
+  if(loading)
+    return <ActivityIndicator size="large" color={HIGHLITED_COLOR} style={{flex: 1}}/>
+
+
+  const Day = ({day, plan}) => (
     <TouchableOpacity style={styles.dayWrapper}>
       <View style={styles.dayContainer}>
         <Text style={{paddingLeft: 15}}> {day} </Text>
-        <Text style={{paddingRight: 15, fontSize: 10}}> 
-            {tableData['Monday']}
+        <Text style={{paddingRight: 15, fontSize: 10}}>
+          {plan}
         </Text>
       </View>
     </TouchableOpacity>
@@ -72,7 +75,7 @@ const Plans = () => {
       <TopTabs />
         <View  style={styles.daysContainer}>
           {days.map((day, index) => (
-            <Day key={index} day={day}/>
+            <Day key={index} day={day} plan={plans[engDays[index]]}/>
           ))}
         </View>
     </View>
