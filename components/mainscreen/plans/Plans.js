@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
     borderColor:'rgba(158, 150, 150, .6)',
   },
   highlitedText: {
-    color: HIGHLITED_COLOR
   }
 })
 

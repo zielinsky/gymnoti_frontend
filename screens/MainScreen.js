@@ -35,7 +35,7 @@ export const tabsInfo = [
 ]
 
 const MainScreen = () => {
-  const [activeTab, setActiveTab] = useState('Plany')
+  const [activeTab, setActiveTab] = useState('Historia')
 
   return (
       <SafeAreaView style={styles.container}>
