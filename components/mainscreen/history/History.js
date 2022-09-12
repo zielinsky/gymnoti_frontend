@@ -114,8 +114,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 350,
     height: 40,
-    borderWidth: .6,
-    borderRadius: 10,
     borderColor:'rgba(158, 150, 150, .6)',
   },
 })
