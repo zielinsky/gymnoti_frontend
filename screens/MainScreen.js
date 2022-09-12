@@ -6,6 +6,7 @@ import Plans from '../components/mainscreen/plans/Plans'
 import History from '../components/mainscreen/history/History'
 import Profile from '../components/mainscreen/profile/Profile'
 import Progres from '../components/mainscreen/progres/Progres'
+import Train from '../components/mainscreen/train/Train'
 
 export const tabsInfo = [
   {
@@ -20,7 +21,8 @@ export const tabsInfo = [
   },
   {
     name: 'Rozpocznij Trening',
-    path: require('../assets/icons/play.png')
+    path: require('../assets/icons/play.png'),
+    obj: <Train />
   },  
   {
     name: 'Progres',
