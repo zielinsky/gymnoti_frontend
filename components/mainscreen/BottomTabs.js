@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     width: '100%',
     bottom: 0,
     zIndex: 999,
+    backgroundColor: '#08090D'
   },
   iconsContainer: {
     paddingTop: 10,

@@ -30,11 +30,11 @@ LocaleConfig.defaultLocale = 'pl';
 const HIGHLITED_COLOR = '#2BF1E1'
 
 const dateFormat = (date) =>
-                            date.getDate() + ' ' + LocaleConfig.locales['pl'].monthNames[date.getMonth()+1] +' ' + date.getFullYear() +
+                            date.getDate() + ' ' + LocaleConfig.locales['pl'].monthNames[date.getMonth()] +' ' + date.getFullYear() +
                             ' ' + date.toLocaleTimeString()
 
 const markerDateFormat = (date) =>
-                            date.getFullYear() + '-' + ((date.getMonth()+1) <=9 ? '0' : '') + (date.getMonth()+1) + '-' + (date.getDate() <= 9 ? '0' : '') + date.getDate()
+                                  date.getFullYear() + '-' + ((date.getMonth()+1) <=9 ? '0' : '') + (date.getMonth()+1) + '-' + (date.getDate() <= 9 ? '0' : '') + date.getDate()
 
 const History = () => {
   const [loading, setLoading] = useState(true)
@@ -48,6 +48,8 @@ const History = () => {
 
         const trainingsSnap = [] 
         itemsDocs.map((item, index) => trainingsSnap.push([item.data(), trainingsRef[index]["date"]]))
+
+        trainingsSnap.sort((a, b) => a[1].toDate().getTime() < b[1].toDate().getTime())
 
         const markers = {}
         trainingsRef.map((item) => markers[markerDateFormat(item["date"].toDate())] = {marked: true, dotColor: 'red'})
@@ -83,13 +85,14 @@ const History = () => {
 
     return (
       <View style={styles.container}>
-        <Calendar markedDates={markers} />
+        <Calendar hideExtraDays={true} markedDates={markers} />
         <Divider width={1} orientation='vertical' />
         <View style={{height: '53%', alignItems: 'center'}} >
           <ScrollView>
             {trainings.map((training, index) => (
               <Training key={index} training={training[0].name} date={training[1].toDate()}/>
             ))}
+            <View style={{height: 30}} />
           </ScrollView>
         </View>
       </View>
