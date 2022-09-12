@@ -29,43 +29,48 @@ LocaleConfig.defaultLocale = 'pl';
 
 const HIGHLITED_COLOR = '#2BF1E1'
 
+const dateFormat = (date) =>
+                            date.getDate() + ' ' + LocaleConfig.locales['pl'].monthNames[date.getMonth()+1] +' ' + date.getFullYear() +
+                            ' ' + date.toLocaleTimeString()
+
+const markerDateFormat = (date) =>
+                            date.getFullYear() + '-' + ((date.getMonth()+1) <=9 ? '0' : '') + (date.getMonth()+1) + '-' + (date.getDate() <= 9 ? '0' : '') + date.getDate()
 
 const History = () => {
   const [loading, setLoading] = useState(true)
   const [trainings, setTrainings] = useState({})
+  const [markers, setMarkers] = useState({})
 
   useEffect(() => {
 
     const getDocsReference = async ({trainingsRef}) => {
         const itemsDocs = await Promise.all(trainingsRef.map(item => getDoc(item['training'])))
+
         const trainingsSnap = [] 
-        
         itemsDocs.map((item, index) => trainingsSnap.push([item.data(), trainingsRef[index]["date"]]))
 
+        const markers = {}
+        trainingsRef.map((item) => markers[markerDateFormat(item["date"].toDate())] = {marked: true, dotColor: 'red'})
+
         setTrainings(trainingsSnap);
+        setMarkers(markers);
         setLoading(false);
     }
 
     const  subscriber = onSnapshot(collection(firestore, 'users', auth.currentUser.uid, 'trainings'), QuerySnapshot => {
-
       const trainingsRef = []
+
       QuerySnapshot.forEach(documentSnapshot => {
         trainingsRef.push(documentSnapshot.data())
       })
 
       getDocsReference({trainingsRef: trainingsRef})
-
     });
     return () => subscriber()
   }, [])
 
   if(loading)
     return <ActivityIndicator size="large" color={HIGHLITED_COLOR} style={{flex: 1}}/>
-
-
-  const dateFormat = (date) =>
-                            date.getDate() + ' ' + LocaleConfig.locales['pl'].monthNames[date.getMonth()+1] +' ' + date.getFullYear() +
-                            ' ' + date.toLocaleTimeString()
 
   const Training = ({training, date}) => (
     <TouchableOpacity style={styles.dayWrapper}>
@@ -78,12 +83,12 @@ const History = () => {
 
     return (
       <View style={styles.container}>
-        <Calendar />
+        <Calendar markedDates={markers} />
         <Divider width={1} orientation='vertical' />
         <View style={{height: '53%', alignItems: 'center'}} >
           <ScrollView>
             {trainings.map((training, index) => (
-              <Training key={index} training={training[0].name} date={training[1].toDate('en-EN')}/>
+              <Training key={index} training={training[0].name} date={training[1].toDate()}/>
             ))}
           </ScrollView>
         </View>
