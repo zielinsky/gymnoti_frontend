@@ -4,14 +4,14 @@ import TopTabs from './TopTabs'
 import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore'
 import {firestore, auth} from '../../../firebase'
 
-export const days = [
+const days = [
+  'Niedziela',
   'Poniedziałek',
   'Wtorek',
   'Środa',
   'Czwartek',
   'Piątek',
-  'Sobota',
-  'Niedziela'
+  'Sobota'
 ]
 
 const engDays = [

@@ -37,7 +37,7 @@ export const tabsInfo = [
 ]
 
 const MainScreen = () => {
-  const [activeTab, setActiveTab] = useState('Historia')
+  const [activeTab, setActiveTab] = useState('Rozpocznij Trening')
 
   return (
       <SafeAreaView style={styles.container}>
