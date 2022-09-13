@@ -75,8 +75,8 @@ const History = () => {
     return <ActivityIndicator size="large" color={HIGHLITED_COLOR} style={{flex: 1}}/>
 
   const Training = ({training, date}) => (
-    <TouchableOpacity style={styles.dayWrapper}>
-      <View style={styles.dayContainer}>
+    <TouchableOpacity style={styles.trainingWrapper}>
+      <View style={styles.trainingContainer}>
         <Text style={{paddingLeft: 15}}> {training} </Text>
         <Text style={{paddingLeft: 15}}> {dateFormat(date)} </Text>
       </View>
@@ -104,14 +104,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  daysContainer:{
-    alignItems: 'center'
-  },
-  dayWrapper: {
+  trainingWrapper: {
     paddingTop: 5,
     paddingBottom: 5,
   },
-  dayContainer: {
+  trainingContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
