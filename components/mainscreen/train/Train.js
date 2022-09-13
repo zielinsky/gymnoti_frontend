@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
 import { doc, getDoc, onSnapshot } from 'firebase/firestore'
-import {firestore, auth} from '../../../firebase'
+import {  firestore, auth } from '../../../firebase'
 import { ScrollView } from 'react-native-gesture-handler'
-import { Divider } from 'react-native-elements'
 
 const HIGHLITED_COLOR = '#2BF1E1'
 
@@ -34,6 +34,8 @@ const Train = () => {
   const [plan, setPlan] = useState({})
   const [titleSize, setTitleSize] = useState()
 
+  const navigation = useNavigation()
+
   useEffect(() => {
     const  subscriber = onSnapshot(doc(firestore, 'users', auth.currentUser.uid, 'info', 'plans'), 
       async QuerySnapshot => {
@@ -50,29 +52,28 @@ const Train = () => {
   if(loading)
     return <ActivityIndicator size="large" color={HIGHLITED_COLOR} style={{flex: 1}}/>
 
-  const Exercise = ({name, sets, reps, kg}) => (
-    <TouchableOpacity style={styles.trainingWrapper}>
-    <View style={styles.trainingContainer}>
-      <Text style={{paddingLeft: 15}}> {name} </Text>
-      <Text style={{paddingLeft: 15}}>
+  const Exercise = ({name, sets, reps}) => (
+    <View style={styles.exerciseWrapper}>
+    <View style={styles.exerciseContainer}>
+      <Text style={{width: 200, textAlign: 'center'}}> {name} </Text>
+      <Text>
           <Text style={{fontWeight: '900'}}>  {sets} </Text>serie
-          <Text style={{fontWeight: '900'}}>  {reps} </Text>powtórzeń 
-          <Text style={{fontWeight: '900'}}>  {kg} </Text>kg 
+          <Text style={{fontWeight: '900'}}>  {reps} </Text>powtórzeń
       </Text>
     </View>
-  </TouchableOpacity>
+  </View>
   )
-  
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.circle}>
+      <TouchableOpacity style={styles.circle} onPress={() => navigation.navigate("Training", {exercises: plan["exercises"]})}>
         <Text style={{fontSize: titleSize, textAlign: 'center'}}>{plan["name"]}</Text>
         <Text style={{fontSize: 15}}>{days[now.getDay()].toLocaleUpperCase()}</Text>
         <Text style={{fontSize: 10, paddingTop: 15, color:'grey'}}> Naciśnij, aby rozpocząć</Text>
       </TouchableOpacity>
       <ScrollView style={{marginTop: 25, height: '50%'}}>
         {plan["exercises"].map((element) => (
-              <Exercise name={element["name"]} sets={element["sets"]} reps={element["reps"]} kg={element["kg"]} />
+              <Exercise name={element["name"]} sets={element["sets"]} reps={element["reps"]} />
         ))}
       </ScrollView>
     </View>
@@ -87,15 +88,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 40
   },
-  trainingWrapper: {
+  exerciseWrapper: {
     paddingTop: 5,
     paddingBottom: 5,
   },
-  trainingContainer: {
+  exerciseContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 350,
+    width: 365,
     height: 40,
   },
   circle:{
