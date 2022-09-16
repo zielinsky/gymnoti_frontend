@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 
-const Clock = ({textStyle, timerStyle: clockStyle}) => {
+const Clock = ({textStyle, clockStyle}) => {
     const [sec, setSec] = useState(0);
     const [min, setMin] = useState(0);
     const [hour, setHour] = useState(0);

@@ -16,8 +16,9 @@ const TrainingScreen = () => {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
-              <Clock />
-              <Timer time={180} start={rest} timerStyle={{position: 'absolute', right: 50}} />
+              <Clock clockStyle={{position: 'absolute', left: 35}} textStyle={{fontSize: 20}}/>
+              <Text style={{fontSize: 50}}>{setID}/{route.params["exercises"][exerciseID]["sets"]}</Text>
+              <Timer time={180} start={rest} timerStyle={{position: 'absolute', right: 35}} />
         </View> 
         <View  style={styles.exerciseContainer}>
             <Text> {route.params["exercises"][0]["name"]} </Text>
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '10%',
     alignItems: 'center',
-    flexDirection: 'row'
+    justifyContent: 'center'
   },
   headerText: {
     textAlign: 'center',
