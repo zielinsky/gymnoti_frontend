@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { doc, getDoc, onSnapshot } from 'firebase/firestore'
 import {  firestore, auth } from '../../../firebase'
 import { ScrollView } from 'react-native-gesture-handler'
+import { Divider } from 'react-native-elements'
 
 const HIGHLITED_COLOR = '#2BF1E1'
 
@@ -66,16 +67,19 @@ const Train = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.circle} onPress={() => navigation.navigate("Training", {exercises: plan["exercises"]})}>
+      <TouchableOpacity style={styles.button}>
         <Text style={{fontSize: titleSize, textAlign: 'center'}}>{plan["name"]}</Text>
         <Text style={{fontSize: 15}}>{days[now.getDay()].toLocaleUpperCase()}</Text>
-        <Text style={{fontSize: 10, paddingTop: 15, color:'grey'}}> Naciśnij, aby rozpocząć</Text>
+        <Text style={{fontSize: 10, paddingTop: 15, color:'grey'}}> Naciśnij, aby zmienić wybrany trening</Text>
       </TouchableOpacity>
-      <ScrollView style={{marginTop: 25, height: '50%'}}>
+      <ScrollView style={{marginTop: 25, height: '70%', width: '100%'}}>
         {plan["exercises"].map((element) => (
               <Exercise name={element["name"]} sets={element["sets"]} reps={element["reps"]} />
         ))}
       </ScrollView>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Training", {exercises: plan["exercises"]})}>
+        <Text style={{fontSize: 30, color:'#0B1B2B'}}> Rozpocznij trening</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -84,9 +88,9 @@ export default Train
 
 const styles = StyleSheet.create({
   container:{
-    flex: 1,
     alignItems: 'center',
-    paddingTop: 40
+    paddingTop: 40,
+    height: '90%'
   },
   exerciseWrapper: {
     paddingTop: 5,
@@ -99,12 +103,9 @@ const styles = StyleSheet.create({
     width: 365,
     height: 40,
   },
-  circle:{
-    width: 250,
-    height: 250,
-    borderWidth: 3,
-    borderColor: 'rgba(130, 130, 130, 1)',
-    borderRadius: 125,
+  button:{
+    width: '100%',
+    height: '15%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'

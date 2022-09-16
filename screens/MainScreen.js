@@ -20,7 +20,7 @@ export const tabsInfo = [
     obj: <History />
   },
   {
-    name: 'Rozpocznij Trening',
+    name: 'Trening',
     path: require('../assets/icons/play.png'),
     obj: <Train />
   },  
@@ -37,7 +37,7 @@ export const tabsInfo = [
 ]
 
 const MainScreen = () => {
-  const [activeTab, setActiveTab] = useState('Rozpocznij Trening')
+  const [activeTab, setActiveTab] = useState('Trening')
 
   return (
       <SafeAreaView style={styles.container}>
