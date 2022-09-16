@@ -77,7 +77,7 @@ const Train = () => {
               <Exercise name={element["name"]} sets={element["sets"]} reps={element["reps"]} />
         ))}
       </ScrollView>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Training", {exercises: plan["exercises"]})}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Training", {exercises: plan["exercises"], name: plan["name"]})}>
         <Text style={{fontSize: 30, color:'#0B1B2B'}}> Rozpocznij trening</Text>
       </TouchableOpacity>
     </View>
