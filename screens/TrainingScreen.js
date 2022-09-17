@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Timer from '../components/trainingscreen/Timer'
 import Clock from '../components/trainingscreen/Clock'
 
+
 const TrainingScreen = () => {
   const [exerciseID, setExerciseID] = useState(0)
   const [setID, setSetID] = useState(1)
@@ -21,11 +22,15 @@ const TrainingScreen = () => {
               <Timer time={180} start={rest} timerStyle={{position: 'absolute', right: 35}} />
         </View> 
         <View  style={styles.exerciseContainer}>
-            <Text> {route.params["exercises"][0]["name"]} </Text>
+          <View style={styles.exerciseHeader}>
+            <Text style={{width: '80%'}}> {route.params["exercises"][0]["name"]} </Text>
+            <Text>{exerciseID+1}/{route.params["exercises"].length}</Text>
+          </View>
           <View style={styles.exerciseImage}>
             <Text> EXERCISE IMAGE/VIDEO HERE</Text> 
           </View>
         </View>
+        
       </SafeAreaView>
     )
 }
@@ -56,6 +61,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'white',
   },
+  exerciseHeader: {
+    justifyContent: 'space-between',
+    flexDirection: "row",
+    width: '100%'
+  },
   checkContainer: {
 
   }, 
@@ -68,7 +78,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '10%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    flexDirection: 'row'
   },
   headerText: {
     textAlign: 'center',
